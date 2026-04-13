@@ -1,0 +1,17 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+COZE_WORKSPACE_PATH="${COZE_WORKSPACE_PATH:-$(pwd)}"
+
+cd "${COZE_WORKSPACE_PATH}"
+
+echo "Installing dependencies with npm..."
+npm install --prefer-offline --loglevel=warn
+
+echo "Building the Next.js project..."
+npx next build
+
+echo "Bundling server with tsup..."
+npx tsup src/server.ts --format cjs --platform node --target node20 --outDir dist --no-splitting --no-minify
+
+echo "Build completed successfully!"
