@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "npm install && npm run build",
+    "dist": ".next"
+  },
+  "run": {
+    "command": "npm start",
+    "port": 5000
+  }
+}
